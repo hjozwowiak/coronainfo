@@ -3,15 +3,13 @@ import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import VirusTestScreen from '../screens/VirusTestScreen';
+import StatsScreen from '../screens/StatsScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
 export default function BottomTabNavigator({ navigation, route }) {
-  // Set the header title on the parent stack navigator depending on the
-  // currently active tab. Learn more in the documentation:
-  // https://reactnavigation.org/docs/en/screen-options-resolution.html
   navigation.setOptions({ headerTitle: getHeaderTitle(route) });
 
   return (
@@ -20,16 +18,24 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Home"
         component={HomeScreen}
         options={{
-          title: 'Get Started',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          title: 'Start',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-home" />,
         }}
       />
       <BottomTab.Screen
-        name="Links"
-        component={LinksScreen}
+        name="VirusTest"
+        component={VirusTestScreen}
         options={{
-          title: 'Resources',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          title: 'Test',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-star" />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Stats"
+        component={StatsScreen}
+        options={{
+          title: 'Statystyki',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-stats" />,
         }}
       />
     </BottomTab.Navigator>
@@ -41,8 +47,10 @@ function getHeaderTitle(route) {
 
   switch (routeName) {
     case 'Home':
-      return 'How to get started';
-    case 'Links':
-      return 'Links to learn more';
+      return 'CoronaInfo';
+    case 'VirusTest':
+      return 'Test';
+    case 'Stats':
+      return 'Statystyki';
   }
 }
